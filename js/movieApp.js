@@ -1,3 +1,20 @@
+function createListItems(searchResults) {
+  $('#results').html('');
+  if (!searchResults.Search) {return;}
+  for (var i=0; i<searchResults.Search.length; i++) {
+    createListItem(searchResults.Search[i])
+  }
+}
+
+function createListItem(movieData) {
+  var listElement = $('<li />');
+  listElement.attr('class', 'searchItem');
+  listElement.append(movieData.Title);
+  listElement.on('click', function (event) { getMovieData(movieData.Title); })
+  $('#results').append(listElement);
+  listElement.hide().fadeIn();
+}
+
 function getMovieData(title) {
   $.ajax({
     url: 'http://www.omdbapi.com/?t=' + encodeURIComponent(title),
@@ -21,23 +38,6 @@ function createDetailElement(movie){
   paraElement.insertAfter(headerElement);
 }
 
-function createListItem(movieData) {
-  var listElement = $('<li />');
-  listElement.attr('class', 'searchItem');
-  listElement.append(movieData.Title);
-  listElement.on('click', function (event) { getMovieData(movieData.Title); })
-  $('#results').append(listElement);
-  listElement.hide().fadeIn();
-}
-
-function createListItems(searchResults) {
-  $('#results').html('');
-  if (!searchResults.Search) {return;}
-  for (var i=0; i<searchResults.Search.length; i++) {
-    createListItem(searchResults.Search[i])
-  }
-}
-
 $(document).ready(function(){
 
   $('#title_search').keyup(function(){
@@ -57,16 +57,16 @@ $(document).ready(function(){
     return false;
   });
 
-  $('form').on('submit', function(event){
-    event.preventDefault();
-    var titleValue = $('#title_search').val();
-    $.ajax({
-      url: 'http://www.omdbapi.com/?s=' + encodeURIComponent(titleValue),
-      method: 'get',
-      dataType: 'jsonp',
-      success: function(movie){
-        console.log(movie);
-      }
-    });
-  });
+  // $('form').on('submit', function(event){
+  //   event.preventDefault();
+  //   var titleValue = $('#title_search').val();
+  //   $.ajax({
+  //     url: 'http://www.omdbapi.com/?s=' + encodeURIComponent(titleValue),
+  //     method: 'get',
+  //     dataType: 'jsonp',
+  //     success: function(movie){
+  //       console.log(movie);
+  //     }
+  //   });
+  // });
 });
