@@ -1,0 +1,15 @@
+#wrapper {
+  width: 80%;
+  margin: auto;
+}
+
+#search_form {
+  float: left;
+  width: 30%;
+}
+
+#movie_data {
+  float: left;
+  padding-left: 30px;
+  width: 60%;
+}
