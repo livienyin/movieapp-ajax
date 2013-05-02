@@ -12,9 +12,13 @@ function getMovieData(title) {
 function createDetailElement(movie){
   var title = movie.Title;
   var year = movie.Year;
+  var plot = movie.Plot;
   var headerElement = $('<h2 />');
+  var paraElement = $('<p>');
   headerElement.append(title + ' ' + year);
-  headerElement.appendTo('#movie_data')
+  headerElement.appendTo('#movie_data');
+  paraElement.append(plot);
+  paraElement.insertAfter(headerElement);
 }
 
 function createListItem(movieData) {
